@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapaViewController" customModule="Alura_Ponto" customModuleProvider="target">
+            <connections>
+                <outlet property="mapa" destination="Rz4-y2-VCt" id="Alc-ac-15F"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Localização da batida de ponto eletrônico" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQN-yV-VEy">
+                    <rect key="frame" x="61.5" y="59" width="291" height="54.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="291" id="yLE-Iy-23b"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Rz4-y2-VCt">
+                    <rect key="frame" x="0.0" y="128.5" width="414" height="733.5"/>
+                </mapView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="hQN-yV-VEy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="3Nk-kU-XbO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Rz4-y2-VCt" secondAttribute="bottom" id="Ioh-Sj-Vvu"/>
+                <constraint firstItem="Rz4-y2-VCt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LZT-ap-UQO"/>
+                <constraint firstItem="hQN-yV-VEy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Rb8-QQ-SPI"/>
+                <constraint firstItem="Rz4-y2-VCt" firstAttribute="top" secondItem="hQN-yV-VEy" secondAttribute="bottom" constant="15" id="bxf-HQ-E3H"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Rz4-y2-VCt" secondAttribute="trailing" id="vLB-EK-tho"/>
+            </constraints>
+            <point key="canvasLocation" x="140.57971014492756" y="75"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

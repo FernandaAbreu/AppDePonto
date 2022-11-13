@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+
 class ReciboViewController: UIViewController {
     
     // MARK: - IBOutlet
@@ -38,14 +39,22 @@ class ReciboViewController: UIViewController {
         configuraTableView()
         configuraViewFoto()
         buscador.delegate = self
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         getRecibos()
+        getFotoDePerfil()
         reciboTableView.reloadData()
     }
     
     // MARK: - Class methods
+    func getFotoDePerfil(){
+        if let fotoPerfil = Perfil().carregarImagem(){
+            fotoPerfilImageView.image = fotoPerfil
+        }
+    }
+    
     func getRecibos(){
         Recibo.carregar(buscador)
     }
@@ -105,13 +114,24 @@ extension ReciboViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recibo = buscador.fetchedObjects?[indexPath.row]
+        let mapa = MapaViewController.instanciar(recibo)
+        mapa.modalPresentationStyle = .automatic
+    }
 }
 
 extension ReciboViewController: ReciboTableViewCellDelegate {
     func deletarRecibo(_ index: Int) {
-        guard let recibo = buscador.fetchedObjects?[index] else {return}
-        recibo.deletar(contexto)
-        reciboTableView.reloadData()
+        AutenticacaoLocal().autorizaUsuario { autenticado in
+            if(autenticado){
+                guard let recibo = self.buscador.fetchedObjects?[index] else {return}
+                recibo.deletar(self.contexto)
+                self.reciboTableView.reloadData()
+            }
+        }
+        
+        
     }
 }
 

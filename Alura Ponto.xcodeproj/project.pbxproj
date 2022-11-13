@@ -21,6 +21,11 @@
 		03431DD32703BD2B00EB8D91 /* Alura_Ponto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03431DD12703BD2B00EB8D91 /* Alura_Ponto.xcdatamodeld */; };
 		03E880B22704FC4400033A34 /* Recibo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E880B12704FC4400033A34 /* Recibo.swift */; };
 		BA78EAB129185C000073C166 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA78EAB029185C000073C166 /* Camera.swift */; };
+		BA78EAB329188D170073C166 /* Perfil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA78EAB229188D170073C166 /* Perfil.swift */; };
+		BA78EAB5291B15D30073C166 /* AutenticacaoLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA78EAB4291B15D20073C166 /* AutenticacaoLocal.swift */; };
+		BA78EAB729214E570073C166 /* Localizacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA78EAB629214E570073C166 /* Localizacao.swift */; };
+		BA78EABD292166D90073C166 /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA78EABB292166D90073C166 /* MapaViewController.swift */; };
+		BA78EABE292166D90073C166 /* MapaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA78EABC292166D90073C166 /* MapaViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +45,11 @@
 		03431DD22703BD2B00EB8D91 /* Alura_Ponto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alura_Ponto.xcdatamodel; sourceTree = "<group>"; };
 		03E880B12704FC4400033A34 /* Recibo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recibo.swift; sourceTree = "<group>"; };
 		BA78EAB029185C000073C166 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		BA78EAB229188D170073C166 /* Perfil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perfil.swift; sourceTree = "<group>"; };
+		BA78EAB4291B15D20073C166 /* AutenticacaoLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutenticacaoLocal.swift; sourceTree = "<group>"; };
+		BA78EAB629214E570073C166 /* Localizacao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizacao.swift; sourceTree = "<group>"; };
+		BA78EABB292166D90073C166 /* MapaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
+		BA78EABC292166D90073C166 /* MapaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapaViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,7 @@
 		030EF1A426FBD61C000D3E42 /* Alura Ponto */ = {
 			isa = PBXGroup;
 			children = (
+				BA78EAB8292166730073C166 /* Mapa */,
 				030EF1B926FBD69B000D3E42 /* AppDelegate */,
 				030EF1BC26FBD6B8000D3E42 /* Home */,
 				030EF1CF26FBE686000D3E42 /* Recibo */,
@@ -150,6 +161,9 @@
 				03E880B12704FC4400033A34 /* Recibo.swift */,
 				03431DCB270290D200EB8D91 /* FormatadorDeData.swift */,
 				BA78EAB029185C000073C166 /* Camera.swift */,
+				BA78EAB229188D170073C166 /* Perfil.swift */,
+				BA78EAB4291B15D20073C166 /* AutenticacaoLocal.swift */,
+				BA78EAB629214E570073C166 /* Localizacao.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -169,6 +183,31 @@
 				03431DD12703BD2B00EB8D91 /* Alura_Ponto.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		BA78EAB8292166730073C166 /* Mapa */ = {
+			isa = PBXGroup;
+			children = (
+				BA78EABA292166A50073C166 /* Controller */,
+				BA78EAB9292166960073C166 /* View */,
+			);
+			path = Mapa;
+			sourceTree = "<group>";
+		};
+		BA78EAB9292166960073C166 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA78EABC292166D90073C166 /* MapaViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BA78EABA292166A50073C166 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BA78EABB292166D90073C166 /* MapaViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +272,7 @@
 				030EF1B226FBD61E000D3E42 /* LaunchScreen.storyboard in Resources */,
 				030EF1AF26FBD61E000D3E42 /* Assets.xcassets in Resources */,
 				030EF1C826FBE529000D3E42 /* HomeViewController.xib in Resources */,
+				BA78EABE292166D90073C166 /* MapaViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,10 +284,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				030EF1D926FD2A13000D3E42 /* ReciboTableViewCell.swift in Sources */,
+				BA78EAB5291B15D30073C166 /* AutenticacaoLocal.swift in Sources */,
+				BA78EABD292166D90073C166 /* MapaViewController.swift in Sources */,
+				BA78EAB729214E570073C166 /* Localizacao.swift in Sources */,
 				030EF1CB26FBE62E000D3E42 /* ReciboViewController.swift in Sources */,
 				03431DD32703BD2B00EB8D91 /* Alura_Ponto.xcdatamodeld in Sources */,
 				030EF1A626FBD61C000D3E42 /* AppDelegate.swift in Sources */,
 				030EF1A826FBD61C000D3E42 /* SceneDelegate.swift in Sources */,
+				BA78EAB329188D170073C166 /* Perfil.swift in Sources */,
 				BA78EAB129185C000073C166 /* Camera.swift in Sources */,
 				03431DCC270290D200EB8D91 /* FormatadorDeData.swift in Sources */,
 				03E880B22704FC4400033A34 /* Recibo.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-
+import CoreLocation
 class HomeViewController: UIViewController {
 
     // MARK: - IBOutlets
@@ -24,12 +24,17 @@ class HomeViewController: UIViewController {
         let contexto = UIApplication.shared.delegate as! AppDelegate
         return contexto.persistentContainer.viewContext
     }()
+    lazy var gerenciadorDeLocalizacao = CLLocationManager()
+     var latitude: CLLocationDegrees?
+     var longitude: CLLocationDegrees?
+    private lazy var localizacao = Localizacao()
     // MARK: - View life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configuraView()
         atualizaHorario()
+        requisicaoDaLocalizacaoDoUsuario()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,6 +78,11 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func requisicaoDaLocalizacaoDoUsuario(){
+        localizacao.delegate = self
+        localizacao.permissao(gerenciadorDeLocalizacao)
+    }
+    
     // MARK: - IBActions
     
     @IBAction func registrarButton(_ sender: UIButton) {
@@ -82,9 +92,15 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: CameraDelegate{
     func didFinishFoto(_ image: UIImage) {
-      let recibo = Recibo(status: false, data: Date(), foto: image)
+        let recibo = Recibo(status: false, data: Date(), foto: image, latitude: latitude ?? 0.0, longitude: longitude ?? 0.0)
         recibo.save(contexto)
     }
     
     
+}
+extension HomeViewController: LocalizacaoDelegate {
+    func atualizaLocalizacaoDoUsuario(latitude: Double?, longitude: Double?) {
+        self.latitude = latitude ?? 0.0
+        self.longitude = longitude ?? 0.0
+    }
 }

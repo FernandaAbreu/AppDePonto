@@ -10,7 +10,9 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    enum TipoDeShortCut: String {
+        case RegistrarPonto = "RegistrarPonto"
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -35,9 +37,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.viewControllers = [homeController, reciboController]
         tabBarController.selectedViewController = homeController
         
-        window?.rootViewController = tabBarController
+        let navigationController = UINavigationController(rootViewController: tabBarController)
+        
+        navigationController.navigationBar.isHidden = true
+        
+        
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if let tipo = TipoDeShortCut(rawValue: shortcutItem.type){
+            switch tipo {
+            case .RegistrarPonto:
+                let navigationController = window?.rootViewController as? UINavigationController
+                if let tabBarController = navigationController?.viewControllers.first as? UITabBarController {
+                    navigationController?.popViewController(animated: true)
+                    
+                    if let home = tabBarController.viewControllers?.first as? HomeViewController {
+                        home.tentaAbrirCamera()
+                    }
+                }
+            }
+        }
+    }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -66,6 +89,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
 
 
 }

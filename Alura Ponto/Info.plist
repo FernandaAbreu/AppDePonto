@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutItemIconTypeCompose</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>RegistrarPonto</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Registrar Ponto</string>
+		</dict>
+	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Precisamos de sua localização para registrar o ponto </string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>É necessário ter acesso utilizar a autenticação para as configurações</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Alura Ponto precisa de acesso a sua biblioteca de fotos </string>
 	<key>NSCameraUsageDescription</key>
