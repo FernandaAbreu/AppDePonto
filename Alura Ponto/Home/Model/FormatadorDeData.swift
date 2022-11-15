@@ -28,4 +28,10 @@ struct FormatadorDeData {
         
         return formatador.string(from: data)
     }
+    func getData(_ data:String)-> Date? {
+        let formatador = DateFormatter()
+        formatador.timeZone = TimeZone(abbreviation: "GMT-3")
+        formatador.dateFormat = "dd/MM/yyyy HH:mm"
+        return formatador.date(from: data)
+    }
 }

@@ -32,6 +32,8 @@ class ReciboViewController: UIViewController {
         let contexto = UIApplication.shared.delegate as! AppDelegate
         return contexto.persistentContainer.viewContext
     }()
+    private lazy var reciboService = ReciboService()
+    private var recibos: [Recibo] = []
     // MARK: - View life cycle
 
     override func viewDidLoad() {
@@ -56,7 +58,14 @@ class ReciboViewController: UIViewController {
     }
     
     func getRecibos(){
-        Recibo.carregar(buscador)
+        //Recibo.carregar(buscador) : Quando usava coreData
+        reciboService.get { [weak self] resposta, error in
+            if error == nil {
+                guard let recibos = resposta else { return }
+                self?.recibos = recibos
+                self?.reciboTableView.reloadData()
+            }
+        }
     }
     func configuraViewFoto() {
         escolhaFotoView.layer.borderWidth = 1
@@ -93,7 +102,8 @@ class ReciboViewController: UIViewController {
 
 extension ReciboViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return buscador.fetchedObjects?.count ?? 0
+        //return buscador.fetchedObjects?.count ?? 0
+        return recibos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,7 +111,8 @@ extension ReciboViewController: UITableViewDataSource {
             fatalError("erro ao criar ReciboTableViewCell")
         }
         
-        let recibo = buscador.fetchedObjects?[indexPath.row]
+        //let recibo = buscador.fetchedObjects?[indexPath.row]
+        let recibo = recibos[indexPath.row]
         cell.configuraCelula(recibo)
         cell.delegate = self
         cell.deletarButton.tag = indexPath.row
@@ -115,7 +126,8 @@ extension ReciboViewController: UITableViewDelegate {
         return 120
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recibo = buscador.fetchedObjects?[indexPath.row]
+        //let recibo = buscador.fetchedObjects?[indexPath.row]
+        let recibo = recibos[indexPath.row]
         let mapa = MapaViewController.instanciar(recibo)
         mapa.modalPresentationStyle = .automatic
     }
@@ -125,9 +137,14 @@ extension ReciboViewController: ReciboTableViewCellDelegate {
     func deletarRecibo(_ index: Int) {
         AutenticacaoLocal().autorizaUsuario { autenticado in
             if(autenticado){
-                guard let recibo = self.buscador.fetchedObjects?[index] else {return}
-                recibo.deletar(self.contexto)
-                self.reciboTableView.reloadData()
+                //guard let recibo = self.buscador.fetchedObjects?[index] else {return}
+                let recibo = self.recibos[index] 
+                //recibo.deletar(self.contexto)
+                self.reciboService.delete(id: "\(recibo.id)") {
+                    self.recibos.remove(at: index)
+                    self.reciboTableView.reloadData()
+                }
+               
             }
         }
         

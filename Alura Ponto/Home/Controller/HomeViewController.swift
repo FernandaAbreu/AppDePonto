@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
      var latitude: CLLocationDegrees?
      var longitude: CLLocationDegrees?
     private lazy var localizacao = Localizacao()
+    private lazy var reciboService = ReciboService()
     // MARK: - View life cycle
 
     override func viewDidLoad() {
@@ -94,6 +95,13 @@ extension HomeViewController: CameraDelegate{
     func didFinishFoto(_ image: UIImage) {
         let recibo = Recibo(status: false, data: Date(), foto: image, latitude: latitude ?? 0.0, longitude: longitude ?? 0.0)
         recibo.save(contexto)
+       
+        reciboService.post(recibo) { [weak self] salvo in
+            if !salvo {
+                guard let contexto = self?.contexto else { return }
+                recibo.save(contexto)
+            }
+        }
     }
     
     
